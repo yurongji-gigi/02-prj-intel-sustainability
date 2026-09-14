@@ -1,1 +1,140 @@
-/* Add your CSS here */
+/* Basic page colors and sizing */
+:root {
+	--intel-blue: #0068b5;
+	--deep-blue: #003c71;
+	--ink: #172b4d;
+	--muted: #536477;
+	--line: #cbd8e4;
+	--white: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+	margin: 0;
+	color: var(--ink);
+	background: #f4f7fa;
+	font-family: "Trebuchet MS", Verdana, sans-serif;
+	line-height: 1.6;
+}
+
+/* The hero gives the page a strong Intel blue starting point. */
+.hero {
+	min-height: 390px;
+	padding: 64px 24px 72px;
+	color: var(--white);
+	text-align: center;
+	background: linear-gradient(135deg, var(--deep-blue), var(--intel-blue));
+}
+
+.hero-content { max-width: 800px; margin: 0 auto; }
+
+.intel-logo {
+	display: block;
+	width: min(190px, 55vw);
+	height: auto;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 35px;
+	padding: 14px 18px;
+	background: transparent;
+}
+
+.hero h1 {
+	max-width: 720px;
+	margin: 0 auto 18px;
+	font-size: clamp(2.25rem, 6vw, 4.5rem);
+	line-height: 1.08;
+}
+
+.hero p { max-width: 650px; margin: 0 auto; color: #e9f5fd; font-size: 1.1rem; }
+
+.timeline-section { max-width: 1400px; margin: 0 auto; padding: 76px 24px 90px; }
+
+.section-heading { max-width: 680px; margin-bottom: 38px; }
+
+.eyebrow {
+	margin: 0 0 8px;
+	color: var(--intel-blue);
+	font-size: 0.8rem;
+	font-weight: bold;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.section-heading h2 { margin: 0 0 8px; color: var(--deep-blue); font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.15; }
+.section-heading p:last-child, .timeline-note { color: var(--muted); }
+
+.timeline {
+	display: flex;
+	gap: 22px;
+	padding: 12px 8px 30px;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scrollbar-color: var(--intel-blue) var(--line);
+}
+
+.milestone {
+	position: relative;
+	display: flex;
+	flex: 0 0 290px;
+	flex-direction: column;
+	min-height: 440px;
+	overflow: hidden;
+	border: 1px solid var(--line);
+	border-top: 5px solid var(--intel-blue);
+	background: var(--white);
+	scroll-snap-align: start;
+	transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.milestone:hover, .milestone:focus-within, .milestone:focus {
+	transform: translateY(-8px);
+	outline: 3px solid #9ed7f5;
+	outline-offset: 3px;
+	box-shadow: 0 16px 30px rgba(0, 60, 113, 0.18);
+}
+
+.milestone img { order: 1; width: 100%; height: 116px; object-fit: cover; }
+.milestone h2, .milestone h3, .milestone p { margin-right: 22px; margin-left: 22px; }
+.milestone h2 { order: 0; margin-top: 23px; margin-bottom: 2px; color: var(--intel-blue); font-size: 1.65rem; }
+.milestone h3 { order: 2; margin-top: 18px; margin-bottom: 0; color: var(--deep-blue); font-size: 1.2rem; line-height: 1.25; }
+.milestone p {
+	order: 3;
+	max-height: 0;
+	margin-top: 10px;
+	margin-bottom: 0;
+	overflow: hidden;
+	color: var(--muted);
+	font-size: 0.93rem;
+	opacity: 0;
+	transition: max-height 220ms ease, opacity 220ms ease, margin-bottom 220ms ease;
+}
+
+.milestone:hover p,
+.milestone:focus-within p,
+.milestone:focus p {
+	max-height: 160px;
+	margin-bottom: 23px;
+	opacity: 1;
+}
+.timeline-note { margin: 20px 8px 0; font-size: 0.9rem; }
+
+@media (max-width: 700px) {
+	.hero { min-height: 360px; padding: 45px 20px 55px; }
+	.intel-logo { margin-bottom: 25px; }
+	.timeline-section { padding: 52px 18px 65px; }
+	.timeline { display: block; padding: 0 4px; overflow: visible; }
+	.milestone { width: 100%; min-height: 0; margin-bottom: 20px; }
+	.milestone p,
+	.milestone:hover p,
+	.milestone:focus-within p,
+	.milestone:focus p {
+		max-height: none;
+		margin-bottom: 23px;
+		opacity: 1;
+	}
+	.timeline-note { margin-top: 26px; }
+}
